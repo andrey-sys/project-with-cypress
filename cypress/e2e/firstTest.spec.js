@@ -53,8 +53,6 @@ describe('First Page Test Suite', ()=> {
         //to find the element in specific form that contains the element
         cy.contains('nb-card', 'Horizontal form').find('[type="email"]')
 
-
-
     })
     it.only('then and wrap methods', ()=> {
 
