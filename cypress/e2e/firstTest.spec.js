@@ -29,8 +29,6 @@ describe('First Page Test Suite', ()=> {
         //most recommended way to find element by Cypress
         cy.get('[data-cy="imputEmail1"]')
 
-
-
     })
 
     it('Second Test',()=> {
