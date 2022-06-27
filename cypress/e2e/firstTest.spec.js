@@ -105,9 +105,20 @@ describe('First Page Test Suite', ()=> {
         //take the text from the element with invoke command
         cy.get('[for="exampleInputEmail1"]').invoke('text').then(EmailLabelFromBasicForm => {
             expect(EmailLabelFromBasicForm).to.equal('Email address')
-            
+
         }) 
 
+        //checkbox are checked with invoke
+        cy.contains('nb-card', 'Basic form')
+        .find('nb-checkbox')
+        .click()
+        .find('.custom-checkbox')
+        .invoke('attr','class')
+        // .should('contain','checked')
+        //preper the same verification with then instead of should
+        .then(checkboxCheckedValueInClass =>{
+            expect(checkboxCheckedValueInClass).to.contain('checked')
+        })
 
     })
 })
