@@ -52,7 +52,7 @@ describe('First Page Test Suite', ()=> {
         cy.contains('nb-card', 'Horizontal form').find('[type="email"]')
 
     })
-    it.only('then and wrap methods', ()=> {
+    it('then and wrap methods', ()=> {
 
         cy.visit('/')
         cy.contains('Forms').click()
@@ -87,5 +87,27 @@ describe('First Page Test Suite', ()=> {
 
             })
         })
+
+    })
+    it.only('Invoke command', ()=>{
+        cy.visit('/')
+        cy.contains('Forms').click()
+        cy.contains('Form Layouts').click()
+
+        //take the text from the element with should command
+        cy.get('[for="exampleInputEmail1"]').should('contain', 'Email address')
+
+        //take the text from the element with then command
+        cy.get('[for="exampleInputEmail1"]').then(EmailLabelFromBasicForm =>{
+            expect(EmailLabelFromBasicForm.text()).to.equal('Email address')
+        })
+
+        //take the text from the element with invoke command
+        cy.get('[for="exampleInputEmail1"]').invoke('text').then(EmailLabelFromBasicForm => {
+            expect(EmailLabelFromBasicForm).to.equal('Email address')
+            
+        }) 
+
+
     })
 })
