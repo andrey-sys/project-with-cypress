@@ -89,7 +89,7 @@ describe('First Page Test Suite', ()=> {
         })
 
     })
-    it.only('Invoke command', ()=>{
+    it('Invoke command', ()=>{
         cy.visit('/')
         cy.contains('Forms').click()
         cy.contains('Form Layouts').click()
@@ -121,4 +121,52 @@ describe('First Page Test Suite', ()=> {
         })
 
     })
+
+    it('Common Datepicker', ()=>{
+        cy.visit('/')
+        cy.contains('Forms').click()
+        cy.contains('Datepicker').click()
+
+        //choose some date and compare it
+        cy.contains('nb-card','Common Datepicker').find('input').then( inputField => {
+           cy.wrap(inputField).click()
+           cy.get('nb-calendar-day-picker').contains('22').click()
+           cy.wrap(inputField).invoke('prop', 'value').should('contain', 'Jun 22, 2022')
+        })
+    })
+
+    //in this test the first radio button must be checked, the second must be unchecked, third must be disabled
+    it.only('Checkbox and Radio buttons', ()=>{
+
+        cy.visit('/')
+        cy.contains('Forms').click()
+        cy.contains('Form Layouts').click()
+
+        //find the 3 radio buttons common element
+        cy.contains('nb-card', 'Using the Grid').find('[type="radio"]').then(threeRadioButtons => {
+            cy.wrap(threeRadioButtons)
+            .first()    //take the first radio button
+            .check({force: true})   //check this radio button, using {force: true} in case the checkbox is hidden
+            .should('be.checked')   //assert if radio button is checked
+
+            cy.wrap(threeRadioButtons)
+            .eq(1)//instead of using .first, may use .eq(0) and set number in parentheses like in array
+            .check({force: true})
+
+            cy.wrap(threeRadioButtons)
+            .eq(0)
+            .should('not.be.checked')
+
+            //check the third radio button - not clickable
+            cy.wrap(threeRadioButtons)
+            .eq(2)
+            .should('be.disabled')
+            
+
+
+        })
+
+    })
+
 })
+
