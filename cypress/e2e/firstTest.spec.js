@@ -161,10 +161,20 @@ describe('First Page Test Suite', ()=> {
             cy.wrap(threeRadioButtons)
             .eq(2)
             .should('be.disabled')
-            
-
 
         })
+
+    })
+    it.only('check boxes', () => {
+
+        cy.visit('/')
+        cy.contains('Modal & Overlays').click()
+        cy.contains('Toastr').click()
+
+        // cy.get('[type="checkbox"]').check({force:true}) //not working for check boxes
+        cy.get('[type="checkbox"]').eq(0).click({force: true})
+        cy.get('[type="checkbox"]').eq(1).check({force: true})
+        //checkbox is just for using with radio buttons and check boxes
 
     })
 
