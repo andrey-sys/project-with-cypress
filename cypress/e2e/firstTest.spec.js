@@ -174,7 +174,7 @@ describe('First Page Test Suite', ()=> {
         // cy.get('[type="checkbox"]').check({force:true}) //not working for check boxes
         cy.get('[type="checkbox"]').eq(0).click({force: true})
         cy.get('[type="checkbox"]').eq(1).check({force: true})
-        //checkbox is just for using with radio buttons and check boxes
+        //check method is just for using with radio buttons and check boxes
 
     })
 
