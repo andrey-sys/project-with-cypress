@@ -136,7 +136,7 @@ describe('First Page Test Suite', ()=> {
     })
 
     //in this test the first radio button must be checked, the second must be unchecked, third must be disabled
-    it.only('Checkbox and Radio buttons', ()=>{
+    it('Checkbox and Radio buttons', ()=>{
 
         cy.visit('/')
         cy.contains('Forms').click()
@@ -165,7 +165,7 @@ describe('First Page Test Suite', ()=> {
         })
 
     })
-    it.only('check boxes', () => {
+    it('check boxes', () => {
 
         cy.visit('/')
         cy.contains('Modal & Overlays').click()
@@ -178,5 +178,50 @@ describe('First Page Test Suite', ()=> {
 
     })
 
-})
+    it.only('Lists and Dropdowns', () => {
 
+        cy.visit('/')
+        
+        //select the dark mode(background) and verify it
+        // cy.get('div nb-select').click()
+        // cy.get('.options-list').contains('Dark').click()
+        // cy.get('nav nb-select').should('contain', 'Dark')
+        // cy.get('nb-layout-header nav').should('have.css','background-color', 'rgb(34, 43, 69)')
+
+        //select all options from the dropdown list(background colors) and verify it
+        cy.get('nav nb-select').then( dropdown => {
+
+            cy.wrap(dropdown).click()
+            //take all 4 option from the list and itterate with each element from list (each method like for each loop)
+            cy.get('.options-list nb-option').each( listItem => {
+                //take the text from first element of the list and delete the empty space with trim method
+                //assign each value to variable with const
+                const itemText = listItem.text().trim()
+
+                //create json object to use 4 colors for comparing
+                const colors =  {
+                    "Light": "rgb(255, 255, 255)",
+                    "Dark": "rgb(34, 43, 69)",
+                    "Cosmic": "rgb(50, 50, 89)",
+                    "Corporate": "rgb(255, 255, 255)"
+                }
+
+                //click on first item from list
+                cy.wrap(listItem).click()
+                //verify the text of the item
+                cy.wrap(dropdown).should('contain', itemText)
+                //verify colors of each of the elements by using json object with colors and element from css
+                cy.get('nb-layout-header nav').should('have.css', 'background-color', colors[itemText] )
+                cy.wrap(dropdown).click()
+
+
+            })
+
+        })
+
+
+
+
+    })
+
+})
