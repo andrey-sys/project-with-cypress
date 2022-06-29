@@ -250,14 +250,30 @@ describe('First Page Test Suite', ()=> {
             cy.wrap(tableEmptyRow).find('.nb-checkmark').click()
 
         })
-        //verify the first name and last nema are added as expected
+        //verify first and last names are added as expected
         cy.get('tbody tr').eq(0).find('td').then(tableColumns => {
             cy.wrap(tableColumns).eq(2).should('contain', 'Andrew')
             cy.wrap(tableColumns).eq(3).should('contain', 'Scott')
 
         })
-    
 
+        //verify the search by Age 20, 30, 40, 200
+        const age = [20, 30, 40, 200]
+
+        cy.wrap(age).each( age => {
+            cy.get('thead [placeholder="Age"]').clear().type(age)
+            cy.wait(1000)
+            cy.get('tbody tr').each(tableRowsWith20 => {
+                if (age== 200){
+                    cy.wrap(tableRowsWith20).should('contain','No data found')
+                }else {
+                    cy.wrap(tableRowsWith20).find('td').eq(6).should('contain', age)
+                }
+                
+        })
+        
+
+        })
 
     })
 
