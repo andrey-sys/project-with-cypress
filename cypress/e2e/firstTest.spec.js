@@ -178,7 +178,7 @@ describe('First Page Test Suite', ()=> {
 
     })
 
-    it.only('Lists and Dropdowns', () => {
+    it('Lists and Dropdowns', () => {
 
         cy.visit('/')
         
@@ -193,7 +193,7 @@ describe('First Page Test Suite', ()=> {
 
             cy.wrap(dropdown).click()
             //take all 4 option from the list and itterate with each element from list (each method like for each loop)
-            cy.get('.options-list nb-option').each( listItem => {
+            cy.get('.options-list nb-option').each( listItem, indexOfbackgroundColor => {
                 //take the text from first element of the list and delete the empty space with trim method
                 //assign each value to variable with const
                 const itemText = listItem.text().trim()
@@ -212,13 +212,28 @@ describe('First Page Test Suite', ()=> {
                 cy.wrap(dropdown).should('contain', itemText)
                 //verify colors of each of the elements by using json object with colors and element from css
                 cy.get('nb-layout-header nav').should('have.css', 'background-color', colors[itemText] )
-                cy.wrap(dropdown).click()
-
+                // cy.wrap(dropdown).click()
+                //do not click after last color
+                if(indexOfbackgroundColor<3){
+                    cy.wrap(dropdown).click()
+                }
 
             })
 
         })
 
+    })
+    it.only('Tables and Data', () => {
+
+        cy.visit('/')
+        cy.contains('Tables & Data').click()
+        cy.contains('Smart Table').click()
+        
+        //find the row and change the age of the user
+        cy.get('tbody').contains('tr', 'Larry').then( tableRow => {
+            cy.wrap(tableRow).find('.nb-edit').click()
+
+        })
 
 
 
