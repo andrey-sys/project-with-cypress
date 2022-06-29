@@ -1,4 +1,7 @@
 ///<reference types = "cypress"/>   
+
+const { type } = require("os")
+
 //import above will help us to suport cypress methods
 describe('First Page Test Suite', ()=> {
 
@@ -232,9 +235,28 @@ describe('First Page Test Suite', ()=> {
         //find the row and change the age of the user
         cy.get('tbody').contains('tr', 'Larry').then( tableRow => {
             cy.wrap(tableRow).find('.nb-edit').click()
+            cy.wrap(tableRow).find('[placeholder="Age"]').clear().type('25')
+            cy.wrap(tableRow).find('.nb-checkmark').click()
+            //finding the value and verifing by colomn
+            cy.wrap(tableRow).find('td').eq(6).should('contain', '25')
 
         })
 
+        //add the new users data
+        cy.get('thead').find('.nb-plus').click()
+        cy.get('thead').find('tr').eq(2).then( tableEmptyRow => {
+            cy.wrap(tableEmptyRow).find('[placeholder="First Name"]').type('Andrew')
+            cy.wrap(tableEmptyRow).find('[placeholder="Last Name"]').type('Scott')
+            cy.wrap(tableEmptyRow).find('.nb-checkmark').click()
+
+        })
+        //verify the first name and last nema are added as expected
+        cy.get('tbody tr').eq(0).find('td').then(tableColumns => {
+            cy.wrap(tableColumns).eq(2).should('contain', 'Andrew')
+            cy.wrap(tableColumns).eq(3).should('contain', 'Scott')
+
+        })
+    
 
 
     })
