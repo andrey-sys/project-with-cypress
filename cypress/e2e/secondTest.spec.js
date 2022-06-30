@@ -1,10 +1,11 @@
 ///<reference types = "cypress" /> 
 
+const { wrap } = require("module")
 const { type } = require("os")
 
 describe('Second Test suite', ()=>{
 
-    it.only('Advanced Datapicker', ()=> {
+    it('Advanced Datapicker', ()=> {
         //function for setting any amount of days(1,5,45,300...)
         //and it will set the day in datepicker from current day
         //also it check if you on the current month, if not it will click the
@@ -43,4 +44,38 @@ describe('Second Test suite', ()=>{
        
     })
 
+    it('Tooltip and so on', ()=>{
+        cy.visit('/')
+        cy.contains('Modal & Overlays').click()
+        cy.contains('Tooltip').click()
+
+        cy.contains('nb-card', 'Colored Tooltips').find('button').then(button =>{
+            cy.wrap(button).contains('Default').click()
+            cy.get('nb-tooltip').should('contain', 'This is a tooltip')
+            
+        })
+    })
+    it.only('alert popup', ()=>{
+        cy.visit('/')
+        cy.contains('Tables & Data').click()
+        cy.contains('Smart Table').click()
+
+        cy.get('tbody tr').eq(0).find('.nb-trash').click()
+        //1 option to use popup: to get access to the popup, 
+        //check if the event(window:confirm) is fired up and click the yes button(confirm it)
+        cy.on('window:confirm', (confirm => {
+            expect(confirm).to.equal('Are you sure you want to delete?')
+        }))
+
+        //2 option to use popup: better way to access to the popup
+        const stub = cy.stub()
+        cy.on('window:confirm', stub)
+        cy.get('tbody tr').eq(0).find('[class="nb-trash"]').click().then(()=> {
+            expect(stub.getCall(0)).to.be.calledWith('Are you sure you want to delete?')
+        }) 
+        
+        //cancel the popup
+        cy.get('tbody tr').first().find('.nb-trash').click()
+        cy.on('window:confirm', () => false)
+    })
 })
