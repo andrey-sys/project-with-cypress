@@ -78,4 +78,21 @@ describe('Second Test suite', ()=>{
         cy.get('tbody tr').first().find('.nb-trash').click()
         cy.on('window:confirm', () => false)
     })
+
+    it.only('Cypress Assertions', ()=>{
+        cy.visit('/')
+        cy.contains('Forms').click()
+        cy.contains('Form Layouts').click()
+
+        cy.get('[for="exampleInputEmail1"]').then(EmailLabelFromBasicForm =>{
+            expect(EmailLabelFromBasicForm.text()).to.equal('Email address')
+            expect(EmailLabelFromBasicForm).to.have.class('label')
+            expect(EmailLabelFromBasicForm).to.have.text('Email address')
+        })
+
+        
+
+
+    })
+        
 })
