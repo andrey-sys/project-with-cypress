@@ -19,7 +19,7 @@ export class navigationPage{
     }
     datepickerPage(){
         selectGroupMenuItem('Forms')
-        cy.contains('Datepicker').click()
+        cy.contains('Datepicker').click({force:true})
     }
     dialogPage(){
         selectGroupMenuItem('Modal & Overlays')
