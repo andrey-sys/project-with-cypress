@@ -15,7 +15,7 @@
                     cy.get('[data-name="chevron-right"]').click()//to use left button change to left
                     selectDayFromCurrent(day)
                 }else{
-                    cy.get('nb-calendar-day-picker [class="day-cell ng-star-inserted"]').contains(futureDay).click()
+                    cy.get('.day-cell').not('.bounding-month').contains(futureDay).click()
                 }
 
             })
@@ -29,11 +29,28 @@ export class datepickerPage{
             //calling the function and setting the amount of the days 
             let dateAssert = selectDayFromCurrent(dayFromToday)
             //verify the current date in this format (Oct 18, 2022")
+            //first option of assertion
             cy.wrap(input).invoke('prop','value').should('contain', dateAssert)
-
+            //second option of assertion
+            cy.wrap(input).should('have.value', dateAssert)
+        })
+    }
+    selectRangeInDatepickerFromToday(firstDate, secondDate){
+        //find the input element in Common Datepicker and click
+        cy.contains('nb-card', 'Datepicker With Range').find('input').then( input => {
+            cy.wrap(input).click()
+            //calling the function and setting the first date 
+            let dateAssertFirst = selectDayFromCurrent(firstDate)
+            let dateAssertSecond = selectDayFromCurrent(secondDate)
+            const finalFormatDate = dateAssertFirst+' '+'-'+' '+dateAssertSecond
+            //first option of assertion
+            cy.wrap(input).invoke('prop','value').should('contain',finalFormatDate)
+            //second option of assertion
+            cy.wrap(input).should('have.value',finalFormatDate)
         })
     }
     
+    
 }
-
+//instance of this class, assign it to his object
 export const onDatepickerPage = new datepickerPage()

@@ -19,5 +19,5 @@ export class formLayoutsPage{
     }
    
 }
-
+//instance of this class, assign it to his object
 export const onFormLayoutsPage = new formLayoutsPage()

@@ -67,7 +67,7 @@ describe('Second Test suite', ()=>{
             expect(confirm).to.equal('Are you sure you want to delete?')
         }))
 
-        //2 option to use popup: better way to access to the popup
+        //2 option to use popup: better way to access to the popup and delete the row
         const stub = cy.stub()
         cy.on('window:confirm', stub)
         cy.get('tbody tr').eq(0).find('[class="nb-trash"]').click().then(()=> {
@@ -83,15 +83,13 @@ describe('Second Test suite', ()=>{
         cy.visit('/')
         cy.contains('Forms').click()
         cy.contains('Form Layouts').click()
-
+        
+        //different kind of assertions (https://docs.cypress.io/guides/references/assertions#Chai-jQuery)
         cy.get('[for="exampleInputEmail1"]').then(EmailLabelFromBasicForm =>{
             expect(EmailLabelFromBasicForm.text()).to.equal('Email address')
             expect(EmailLabelFromBasicForm).to.have.class('label')
             expect(EmailLabelFromBasicForm).to.have.text('Email address')
         })
-
-        
-
 
     })
         

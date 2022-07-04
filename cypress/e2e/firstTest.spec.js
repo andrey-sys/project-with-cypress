@@ -226,7 +226,7 @@ describe('First Page Test Suite', ()=> {
         })
 
     })
-    it.only('Tables and Data', () => {
+    it('Tables and Data', () => {
 
         cy.visit('/')
         cy.contains('Tables & Data').click()
@@ -269,10 +269,8 @@ describe('First Page Test Suite', ()=> {
                 }else {
                     cy.wrap(tableRowsWith20).find('td').eq(6).should('contain', age)
                 }
-                
-        })
-        
-
+            })  
+              
         })
 
     })
