@@ -6,7 +6,8 @@ const { onSmartTablePage } = require("../support/page_Objects/smartTable")
 describe('tests with page objects', ()=>{
 
     beforeEach('navigate to the site', ()=>{
-        cy.visit('/')
+
+        cy.navigateToHomePage()
 
     })
 

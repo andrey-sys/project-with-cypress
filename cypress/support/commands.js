@@ -35,3 +35,11 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add('navigateToHomePage', () => {
+    cy.visit('/')
+})
+
+Cypress.Commands.add('navigateToGoogle', () => {
+    cy.visit('www.google.com')
+  })
