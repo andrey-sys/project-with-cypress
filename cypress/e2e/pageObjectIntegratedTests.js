@@ -27,7 +27,7 @@ describe('tests with page objects', ()=>{
 
     })
     //navigate to Form Layouts, submit Inline and Basic form, go to Calendar and select tomorrow date
-    it('submit form and choose the tomorrow date',()=>{
+    it('submit form and choose the tomorrow date',{ browser: '!chrome' },()=>{
         navigateTo.formLayoutsPage()
         onFormLayoutsPage.submitInlineFormWithCheckbox('rvatelJop','jestkiytrah@yahoo.com')
         onFormLayoutsPage.submitBasicFormWithCheckbox('jestkiytrah@yahoo.com','rvatelJop')
@@ -38,7 +38,7 @@ describe('tests with page objects', ()=>{
     })
 
     //navigate to Smart table, create new row, modify the row, delete the row
-    it.only('Smart table create, modify and delete the row', ()=>{
+    it('Smart table create, modify and delete the row',{ browser: '!edge' }, ()=>{
         navigateTo.smartTablePage()
         onSmartTablePage.updateAgeByName('John', '37')
         onSmartTablePage.addNewRowWithFirstAndLastName('Andrew', 'Scottt')
