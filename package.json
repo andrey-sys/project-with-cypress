@@ -27,14 +27,11 @@
     "docs:serve": "compodoc -p src/tsconfig.app.json -d docs -s",
     "prepush": "npm run lint:ci",
     "release:changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
-    
     "cy:run_spec": "npx cypress run --spec 'cypress/e2e/pageObjectIntegratedTests.js' --headless --record --key 640281f1-0bfd-4468-b5f8-40b37d3793b8 --parallel",
     "cy:run_browser": "npm run cy:run_spec -- --browser chrome --group Chrome --ci-build-id 5 & npm run cy:run_spec -- --browser edge --group Edge --ci-build-id 5",
     "cy:run_group": "npm run cy:run_browser",
     "cy:run2": "npx cypress run --headless --record --key 640281f1-0bfd-4468-b5f8-40b37d3793b8 --parallel --ci-build-id 5",
     "cy:run_parallel": "npm run cy:run2 & npm run cy:run2"
-    
-
   },
   "dependencies": {
     "@agm/core": "^1.1.0",
@@ -61,6 +58,7 @@
     "ckeditor": "4.7.3",
     "classlist.js": "1.1.20150312",
     "core-js": "2.5.1",
+    "cypress-plugin-snapshots": "^1.4.4",
     "echarts": "^4.0.2",
     "eva-icons": "^1.1.0",
     "intl": "1.2.5",
