@@ -48,7 +48,7 @@ describe('tests with page objects', ()=>{
     })
 
     // click the menu 2 button and validate the menu 1 is expanded or compacted
-    it.only('validate if the menu expanded or compacted',  ()=>{
+    it('validate if the menu expanded or compacted',  ()=>{
         onNbLayoutHeader.validateMenuNotClicked('.menu-sidebar','.left')
         onNbLayoutHeader.clickMenu2Button('[data-name="menu-2"]')
         onNbLayoutHeader.validateMenuCompacted('.menu-sidebar','.compacted')
@@ -56,6 +56,15 @@ describe('tests with page objects', ()=>{
         onNbLayoutHeader.validateMenuExpanded('.menu-sidebar','.expanded')
     })
 
+    // verify the header by making the snapshots for two parts 
+    it.only('verify picture image', ()=>{
+        //verify the header left side
+        onNbLayoutHeader.validateHeader('nb-layout-header')
+        //entire page validation
+        onNbLayoutHeader.validateEntirePage()
+        
+
+    })
 
 
 })
