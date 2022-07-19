@@ -18,11 +18,10 @@ describe('Visual Test suite', ()=>{
                     imageConfig: {
                       threshold: 0.001,
                     }
+                    
                })
 
-
         })
-       
        
     })
         
