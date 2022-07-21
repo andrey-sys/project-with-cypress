@@ -17,6 +17,10 @@ export class formLayoutsPage{
             cy.wrap(form).submit()
         })
     }
+    // verify the Sign in button using parents element by its text
+    verifySignInUsingTheGridButton(anyElementFromTheForm,parentElement,specificElement,textElement){
+        cy.get(anyElementFromTheForm).parents(parentElement).find(specificElement).should('contain', textElement)
+    }
    
 }
 //instance of this class, assign it to his object

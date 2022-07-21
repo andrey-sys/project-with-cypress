@@ -57,14 +57,19 @@ describe('tests with page objects', ()=>{
     })
 
     // verify the header by making the snapshots for two parts 
-    it.only('verify picture image', ()=>{
+    it('verify header on the main page', ()=>{
         //verify the header left side
         onNbLayoutHeader.validateHeader('nb-layout-header')
         //entire page validation
         onNbLayoutHeader.validateEntirePage()
         
-
     })
 
+    // verify the button by its text, by the specific element of current form Using the Grid, by finding the 
+    // correct element with using the perents element of this form
+    it.only('verify the Sign in button by its text', ()=> {
+        navigateTo.formLayoutsPage()
+        onFormLayoutsPage.verifySignInUsingTheGridButton('[for="inputPassword2"]','form','button','Sign in')
+    })
 
 })

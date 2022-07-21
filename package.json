@@ -31,7 +31,8 @@
     "cy:run_browser": "npm run cy:run_spec -- --browser chrome --group Chrome --ci-build-id 5 & npm run cy:run_spec -- --browser edge --group Edge --ci-build-id 5",
     "cy:run_group": "npm run cy:run_browser",
     "cy:run2": "npx cypress run --headless --record --key 640281f1-0bfd-4468-b5f8-40b37d3793b8 --parallel --ci-build-id 5",
-    "cy:run_parallel": "npm run cy:run2 & npm run cy:run2"
+    "cy:run_parallel": "npm run cy:run2 & npm run cy:run2",
+    "cy:start": "npx cypress open"
   },
   "dependencies": {
     "@agm/core": "^1.1.0",
