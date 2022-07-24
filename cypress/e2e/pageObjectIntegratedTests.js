@@ -27,7 +27,7 @@ describe('tests with page objects', ()=>{
         navigateTo.treeGridPage()
 
     })
-    //navigate to Form Layouts, submit Inline and Basic form, go to Calendar and select tomorrow date
+    //navigate to Form Layouts, submit Inline and Basic form, go to Calendar and select tomorrow date 
     it('submit form and choose the tomorrow date',{ browser: '!chrome' },()=>{
         navigateTo.formLayoutsPage()
         onFormLayoutsPage.submitInlineFormWithCheckbox('rvatelJop','jestkiytrah@yahoo.com')
@@ -73,7 +73,7 @@ describe('tests with page objects', ()=>{
     })
 
     // verify the form by inserting the name into the function verifyForms 
-    it.only('verify that form exist on the page', ()=>{
+    it('verify that form exist on the page', ()=>{
         navigateTo.formLayoutsPage()
         onFormLayoutsPage.verifyForms('Inline form')
         onFormLayoutsPage.verifyForms('Using the Grid')
@@ -82,4 +82,14 @@ describe('tests with page objects', ()=>{
         onFormLayoutsPage.verifyForms('Block form')
         onFormLayoutsPage.verifyForms('Horizontal form')
     })
+
+    // verify clicked radio buttons can choose any of the radio buttons, click and verify, 
+    //by insert number you can verify any of the radio button in current form
+    it('verify clicked radio buttons', ()=>{
+        navigateTo.formLayoutsPage()
+        onFormLayoutsPage.verifyCheckedRadioButton(onFormLayoutsPage.clickRadioButton
+            (onFormLayoutsPage.getElementInForm('#inputPassword2','form','[type="radio"]'),1))
+        
+    })
+
 })

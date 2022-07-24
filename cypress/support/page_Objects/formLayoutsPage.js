@@ -19,16 +19,40 @@ export class formLayoutsPage{
     }
     // verify the Sign in button using parents element by its text
     verifySignInUsingTheGridButton(anyElementFromTheForm,parentElement,specificElement,textElement){
-        cy.get(anyElementFromTheForm).parents(parentElement).find(specificElement).should('contain', textElement)
+        const getElementOnAnyForm = cy.get(anyElementFromTheForm).parents(parentElement).find(specificElement)
+        getElementOnAnyForm.should('contain', textElement)
     }
+
+    // get the element of the radio button on the forms and return like element
+    getElementInForm(anyElementFromTheForm,parentElement,specificElement,textElement){
+            const getElementOnAnyForm = cy.get(anyElementFromTheForm).parents(parentElement).find(specificElement)
+        return getElementOnAnyForm
+    }
+
+    // click the radio button and return the clicked element
+    clickRadioButton(elem,numArray){
+       const newElem = elem.eq(numArray).check({force: true})
+       return newElem
+    }
+
+    // get the clicked radio button and verify 
+    verifyCheckedRadioButton(elem){
+        elem.should('be.checked')
+    }
+
+    
+   
 
     // function for verifing the form by the name of this form
     verifyForms(textHeaderForm){
         cy.contains('nb-card', textHeaderForm).then(form =>{
             cy.wrap(form).should('contain',textHeaderForm)
+            
         })
+
     }
-   
+
+    
 }
 //instance of this class, assign it to his object
 export const onFormLayoutsPage = new formLayoutsPage()
