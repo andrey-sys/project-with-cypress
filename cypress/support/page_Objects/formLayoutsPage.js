@@ -21,6 +21,13 @@ export class formLayoutsPage{
     verifySignInUsingTheGridButton(anyElementFromTheForm,parentElement,specificElement,textElement){
         cy.get(anyElementFromTheForm).parents(parentElement).find(specificElement).should('contain', textElement)
     }
+
+    // function for verifing the form by the name of this form
+    verifyForms(textHeaderForm){
+        cy.contains('nb-card', textHeaderForm).then(form =>{
+            cy.wrap(form).should('contain',textHeaderForm)
+        })
+    }
    
 }
 //instance of this class, assign it to his object

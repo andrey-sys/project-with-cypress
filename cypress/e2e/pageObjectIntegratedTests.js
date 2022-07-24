@@ -67,9 +67,19 @@ describe('tests with page objects', ()=>{
 
     // verify the button by its text, by the specific element of current form Using the Grid, by finding the 
     // correct element with using the perents element of this form
-    it.only('verify the Sign in button by its text', ()=> {
+    it('verify the Sign in button by its text', ()=> {
         navigateTo.formLayoutsPage()
         onFormLayoutsPage.verifySignInUsingTheGridButton('[for="inputPassword2"]','form','button','Sign in')
     })
 
+    // verify the form by inserting the name into the function verifyForms 
+    it.only('verify that form exist on the page', ()=>{
+        navigateTo.formLayoutsPage()
+        onFormLayoutsPage.verifyForms('Inline form')
+        onFormLayoutsPage.verifyForms('Using the Grid')
+        onFormLayoutsPage.verifyForms('Basic form')
+        onFormLayoutsPage.verifyForms('Form without labels')
+        onFormLayoutsPage.verifyForms('Block form')
+        onFormLayoutsPage.verifyForms('Horizontal form')
+    })
 })
