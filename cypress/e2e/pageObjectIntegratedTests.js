@@ -92,4 +92,29 @@ describe('tests with page objects', ()=>{
         
     })
 
+    //
+    it.only('Sample', ()=>{
+        navigateTo.formLayoutsPage()
+        onFormLayoutsPage.getElementInForm('#inputPassword2','form','[type="radio"]').eq(0).check({force: true})
+        onFormLayoutsPage.getElementInForm('#inputPassword2','form','[type="radio"]').eq(1).click({force: true})
+       
+        // // ways find and assert text:
+        // // first
+        // cy.get('[for="inputEmail1"]').should('contain','Email')
+        // // second
+        // cy.get('[for="inputEmail1"]').then(labelText =>{
+        //     expect(labelText.text()).to.equal('Email')
+        // })
+        // // third way with invoke command
+        // cy.get('[for="inputEmail1"]').invoke('text').then(text =>{
+        //     expect(text).to.equal('Email')
+        // })
+
+        // verify checked checkbox by css class and it's attribute name
+        onFormLayoutsPage.verifyCheckboxChecked(onFormLayoutsPage.clickCheckbox
+            (onFormLayoutsPage.getElementInForm('#exampleInputPassword1','form','nb-checkbox')),'.custom-checkbox')
+
+
+    })
+
 })

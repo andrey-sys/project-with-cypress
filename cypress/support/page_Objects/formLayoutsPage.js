@@ -1,3 +1,6 @@
+function waitAmoment(milisecond){
+    cy.wait(milisecond)
+}
 
 
 export class formLayoutsPage{
@@ -35,14 +38,26 @@ export class formLayoutsPage{
        return newElem
     }
 
+    
     // get the clicked radio button and verify 
     verifyCheckedRadioButton(elem){
         elem.should('be.checked')
     }
 
-    
-   
+    // verify with invoke command checked checkbox by attribute of the Css class
+    verifyCheckboxChecked(elem,cssClassChangedElement){
+        
+        elem.find(cssClassChangedElement).invoke('attr','class').should('contain','checked')
+        
+    }
 
+    // click checkbox, function return clicked element
+    clickCheckbox(elem){
+        const clickedElem = elem.click()
+        return clickedElem
+    }
+
+   
     // function for verifing the form by the name of this form
     verifyForms(textHeaderForm){
         cy.contains('nb-card', textHeaderForm).then(form =>{
