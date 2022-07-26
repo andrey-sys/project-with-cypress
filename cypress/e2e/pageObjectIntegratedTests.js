@@ -93,7 +93,7 @@ describe('tests with page objects', ()=>{
     })
 
     //
-    it.only('Sample', ()=>{
+    it('Sample', ()=>{
         navigateTo.formLayoutsPage()
         onFormLayoutsPage.getElementInForm('#inputPassword2','form','[type="radio"]').eq(0).check({force: true})
         onFormLayoutsPage.getElementInForm('#inputPassword2','form','[type="radio"]').eq(1).click({force: true})
@@ -114,7 +114,14 @@ describe('tests with page objects', ()=>{
         onFormLayoutsPage.verifyCheckboxChecked(onFormLayoutsPage.clickCheckbox
             (onFormLayoutsPage.getElementInForm('#exampleInputPassword1','form','nb-checkbox')),'.custom-checkbox')
 
+    })
 
+    // verify font from the dropdown list by insert the name of the font
+    it.only('verify the font from the drop down', ()=>{
+        onNbLayoutHeader.clickDropdown('nav .select-button')
+        onNbLayoutHeader.chooseColorBackground('ul nb-option','Dark')
+        onNbLayoutHeader.validateColorBackgroundByColor('nav .select-button','Dark')
+        onNbLayoutHeader.validateColorBackgroundByCSSColor('nb-layout-header nav','rgb(34, 43, 69)')
     })
 
 })

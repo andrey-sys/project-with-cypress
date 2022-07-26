@@ -47,6 +47,25 @@ export class nbLayoutHeader {
 
     }
 
+    // click the dropdown
+    clickDropdown(element){
+        cy.get(element).click()
+    }
+
+    //choose color of the background
+    chooseColorBackground(element, backGroundColor){
+        cy.contains(element, backGroundColor).click()
+    }
+
+    // validate the color of the background by it's color
+    validateColorBackgroundByColor(element, colorBackground){
+        cy.get(element).should('contain',colorBackground)
+    }
+
+    // validate the color of the background by CSS color
+    validateColorBackgroundByCSSColor(CSSElement, colorBackground){
+        cy.get(CSSElement).should('have.css', 'background-color', colorBackground)
+    }
 }
 
 export const onNbLayoutHeader = new nbLayoutHeader()
