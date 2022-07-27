@@ -66,6 +66,35 @@ export class nbLayoutHeader {
     validateColorBackgroundByCSSColor(CSSElement, colorBackground){
         cy.get(CSSElement).should('have.css', 'background-color', colorBackground)
     }
+
+    // validate all background colors by using each() method and the rgb colors from CSS style
+    validateAllBackgroundColor(buttonOpenDropdownList,elementsOfTheDropdown,elementBackgrounFromCssStyle){
+        cy.get(buttonOpenDropdownList).then(dropdown=>{
+            cy.wrap(dropdown).click()
+            cy.get(elementsOfTheDropdown).each((list,index) =>{
+                const itemText = list.text().trim()//take the text of each elem from the list
+
+                //the list in json format of each background color
+                const colors = {
+                    "Light":"rgb(255, 255, 255)",
+                    "Dark":"rgb(34, 43, 69)",
+                    "Cosmic":"rgb(50, 50, 89)",
+                    "Corporate":"rgb(255, 255, 255)"
+                }
+
+                cy.wrap(list).click()
+                cy.wrap(dropdown).should('contain',itemText)
+                cy.get(elementBackgrounFromCssStyle).should('have.css', 'background-color', colors[itemText])
+                if (index <3){
+                    cy.wrap(dropdown).click()
+                    
+                }
+
+            })
+        })
+    }
+
+
 }
 
 export const onNbLayoutHeader = new nbLayoutHeader()

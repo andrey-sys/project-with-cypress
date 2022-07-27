@@ -117,11 +117,19 @@ describe('tests with page objects', ()=>{
     })
 
     // verify font from the dropdown list by insert the name of the font
-    it.only('verify the font from the drop down', ()=>{
+    it('verify the font from the drop down', ()=>{
         onNbLayoutHeader.clickDropdown('nav .select-button')
         onNbLayoutHeader.chooseColorBackground('ul nb-option','Dark')
         onNbLayoutHeader.validateColorBackgroundByColor('nav .select-button','Dark')
         onNbLayoutHeader.validateColorBackgroundByCSSColor('nb-layout-header nav','rgb(34, 43, 69)')
+
+    
     })
+
+    //validate all background colors by using each() method
+    it.only('validate all background colors', ()=>{
+        onNbLayoutHeader.validateAllBackgroundColor('nav nb-select','.options-list nb-option','nb-layout-header nav')
+    })
+
 
 })
