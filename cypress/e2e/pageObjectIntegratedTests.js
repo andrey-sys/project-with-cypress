@@ -128,7 +128,17 @@ describe('tests with page objects', ()=>{
 
     //validate all background colors by using each() method
     it.only('validate all background colors', ()=>{
-        onNbLayoutHeader.validateAllBackgroundColor('nav nb-select','.options-list nb-option','nb-layout-header nav')
+        for (let x = 10; x>0; x--){
+            console.log("YA KRASAVCHIK CHEREZ: ",x)
+            if(x==1){
+                console.log(x," VSE BLYAD KRASAVCHEG!!!!!")
+        }
+        }
+        
+  
+           
+        
+       // onNbLayoutHeader.validateAllBackgroundColor('nav nb-select','.options-list nb-option','nb-layout-header nav')
     })
 
 
